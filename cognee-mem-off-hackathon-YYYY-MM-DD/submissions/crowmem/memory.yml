@@ -42,8 +42,11 @@ notes: >
   therefore reinforce a memory that didn't actually help. This is a
   best-effort proxy, not ground truth.
 
+  The Stop hook also records a concise agent self-report as an observation
+  for the next issue. This covers sessions where successful Bash commands
+  made every code edit and the selective PostToolUse hook saw no edit event.
+
   This manifest, the scripts, and the hook bundle were written against the
   documented entrant contract (CONTRACT.md) and the Claude Code hook JSON
-  schema. The plugin ran in a local Claude Code Issue 1 session on Windows,
-  but has not been run against the official Mem Off Linux harness. See
-  memoff/README.md for exactly what has and hasn't been verified.
+  schema. The plugin has been exercised in the public Mem Off Linux harness
+  locally; the organisers' private graders remain unavailable here.

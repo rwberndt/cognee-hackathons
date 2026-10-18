@@ -1,8 +1,7 @@
 #!/bin/sh
 # Installs Crowmem on a clean Linux container. Idempotent: safe to re-run.
 #
-# Verified in a clean python:3.14-slim container with a temporary local
-# Crowmem commit. The organisers' full harness image is still untested.
+# Verified in a local Mem Off Linux runner image with the pinned engine.
 set -eu
 export DEBIAN_FRONTEND=noninteractive
 

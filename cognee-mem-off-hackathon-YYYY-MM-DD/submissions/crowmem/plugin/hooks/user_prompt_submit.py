@@ -14,6 +14,17 @@ def main() -> None:
     user_input = stdin.get("prompt", stdin.get("user_input", ""))
     store = c.store_name()
 
+    # Keep the public issue title for the end-of-issue observation. Claude
+    # sometimes makes every edit through Bash, so PostToolUse may have no
+    # selected code-change event to remember.
+    directory = c.state_dir()
+    if directory and isinstance(user_input, str):
+        title = next((line.strip().lstrip("# ").strip() for line in user_input.splitlines() if line.strip()), "")
+        if title:
+            os.makedirs(directory, exist_ok=True)
+            with open(os.path.join(directory, "issue_title"), "w", encoding="utf-8") as f:
+                f.write(title[:200])
+
     result = c.recall(query=user_input, project=store, task=c.issue_task())
     if not result:
         c.emit_empty()
